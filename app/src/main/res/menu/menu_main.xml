@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.obligatoriskopgave.MainActivity">
+    <item
+        android:id="@+id/salesItem"
+        android:title="@string/action_salesItem"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ownItem"
+        android:title="@string/action_ownItem"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/createItem"
+        android:title="@string/action_createItem"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/Logout"
+        android:title="Logout"
+        app:showAsAction="never"
+        />
+</menu>
