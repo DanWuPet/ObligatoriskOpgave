@@ -12,6 +12,11 @@
         android:theme="@style/Theme.ObligatoriskOpgave"
         tools:targetApi="31">
         <activity
+            android:name=".EmailPasswordActivity"
+            android:exported="false"
+            android:label="@string/title_activity_email_password"
+            android:theme="@style/Theme.ObligatoriskOpgave.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

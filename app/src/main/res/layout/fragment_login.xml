@@ -59,15 +59,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         android:text="Sign Up"
         android:textSize="30dp"
+        android:textColor="@color/purple_700"
+        android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="@+id/button_first"
         app:layout_constraintStart_toStartOf="@id/button_first"
         app:layout_constraintTop_toBottomOf="@id/button_first"
-        tools:textColor="@color/purple_700" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
