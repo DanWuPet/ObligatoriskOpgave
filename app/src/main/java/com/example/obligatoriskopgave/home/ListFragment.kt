@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.fragment.findNavController
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.obligatoriskopgave.R
 import com.example.obligatoriskopgave.databinding.FragmentListBinding
+import com.example.obligatoriskopgave.salesItems.AddItemDialogFragment
 import com.example.obligatoriskopgave.salesItems.ItemsRepository
 import com.google.firebase.auth.FirebaseAuth
 
@@ -22,6 +25,7 @@ class ListFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var itemsRepository: ItemsRepository
     private lateinit var itemsAdapter: ItemsAdapter
+    private val userEmail: String by lazy { arguments?.getString("userEmail") ?: "" }
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,7 +33,13 @@ class ListFragment : Fragment() {
 
         // Initialize the repository and adapter
         itemsRepository = ItemsRepository()
-        itemsAdapter = ItemsAdapter()
+        itemsAdapter = ItemsAdapter(userEmail)
+
+        val addFAB = binding.addFAB
+        addFAB.setOnClickListener {
+            val addItemDialogFragment = AddItemDialogFragment()
+            addItemDialogFragment.show(parentFragmentManager, "addItemDialog")
+        }
 
         // Set up the RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
@@ -99,12 +109,16 @@ class ListFragment : Fragment() {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
             // Refresh the list of items here
+            Toast.makeText(context,"List Updated", Toast.LENGTH_SHORT).show()
             itemsRepository.getItems()
             swipeRefreshLayout.isRefreshing = false
         }
 
     }
-
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.removeItem(android.R.id.home)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("APPLE", "logout try")

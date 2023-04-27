@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="10dp">
 
             <Spinner
                 android:id="@+id/sort_spinner"
@@ -28,6 +34,7 @@
                 android:id="@+id/sort_button"
                 android:layout_width="90sp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="Sort" />
         </LinearLayout>
 
@@ -40,7 +47,8 @@
                 android:id="@+id/filter_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
+                android:layout_marginRight="15dp"
                 android:entries="@array/filter_array"
                 android:minHeight="48dp" />
 
@@ -48,7 +56,7 @@
                 android:id="@+id/editTextFilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:hint="Search"
                 android:inputType="textPersonName"
                 android:minHeight="48dp" />
@@ -56,6 +64,8 @@
             <Button
                 android:id="@+id/filter_button"
                 android:layout_width="90sp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0.5"
                 android:layout_height="wrap_content"
                 android:text="Filter" />
         </LinearLayout>
@@ -79,3 +89,15 @@
     </LinearLayout>
 
 </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:contentDescription="TODO" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

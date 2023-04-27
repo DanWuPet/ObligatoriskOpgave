@@ -30,7 +30,7 @@ class AddItemDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        itemsAdapter = ItemsAdapter()
+        itemsAdapter = ItemsAdapter(loginViewModel.userEmail.value.toString().lowercase())
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -39,7 +39,7 @@ class AddItemDialogFragment : DialogFragment() {
         builder.setView(dialogView)
             .setTitle(R.string.add_item_dialog_title)
             .setPositiveButton(R.string.add) { _, _ ->
-                val userEmail = loginViewModel.userEmail.value
+                val userEmail = loginViewModel.userEmail.value.toString().lowercase()
                 val itemDescription =
                     dialogView.findViewById<EditText>(R.id.editTextDescription).text.toString()
                 val itemPrice =
@@ -53,7 +53,7 @@ class AddItemDialogFragment : DialogFragment() {
                     id = 0,
                     description = itemDescription,
                     price = itemPrice,
-                    sellerEmail = userEmail.orEmpty(),
+                    sellerEmail = userEmail,
                     sellerPhone = phoneNumber,
                     time = System.currentTimeMillis()/1000,
                     pictureUrl = imgURL
@@ -71,7 +71,7 @@ class AddItemDialogFragment : DialogFragment() {
 
     private fun addItemToApi(item: Items) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://anbo-salesitems.azurewebsites.net/api/") // replace with your API base URL
+            .baseUrl("https://anbo-salesitems.azurewebsites.net/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

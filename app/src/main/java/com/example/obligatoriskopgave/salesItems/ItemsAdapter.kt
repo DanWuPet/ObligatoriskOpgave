@@ -10,7 +10,7 @@ import com.example.obligatoriskopgave.salesItems.ItemDetailsDialog
 import com.example.obligatoriskopgave.salesItems.Items
 import com.example.obligatoriskopgave.salesItems.humanDate
 
-class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
+class ItemsAdapter(private val userEmail: String?) : RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     private var itemsList = emptyList<Items>()
 
@@ -36,7 +36,7 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
         holder.itemView.setOnClickListener {
             // create an instance of the ItemDetailsDialog class and pass the item to it
-            val dialog = ItemDetailsDialog(holder.itemView.context, item, null) {
+            val dialog = ItemDetailsDialog(holder.itemView.context, item, userEmail) {
                 // handle delete click here
             }
             dialog.show()

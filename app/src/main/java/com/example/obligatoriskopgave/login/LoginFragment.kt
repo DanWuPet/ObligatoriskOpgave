@@ -57,7 +57,8 @@ class LoginFragment : Fragment() {
                         val user = auth.currentUser
                         updateUI(user)
                         Toast.makeText(requireContext(), "Logging In", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_FirstFragment_to_listFragment)
+                        val action = LoginFragmentDirections.actionFirstFragmentToListFragment(viewModel.userEmail.value.toString().lowercase())
+                        findNavController().navigate(action)
                     } else {
                         Log.w("APPLE", "loginUserWithEmail:failure", task.exception
                         )

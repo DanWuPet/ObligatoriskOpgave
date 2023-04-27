@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    lateinit var addFAB: FloatingActionButton
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +34,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        addFAB = binding.idFABAdd // initialize addFAB variable by finding the view in the layout
-        addFAB.setOnClickListener{
-            val addItemDialogFragment = AddItemDialogFragment()
-            addItemDialogFragment.show(supportFragmentManager, "addItemDialog")
-        }
     }
 
 

@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:text="Exit" />
 
     <TextView
@@ -18,7 +19,6 @@
         android:layout_width="match_parent"
         android:textSize="40dp"
         android:textStyle="bold"
-        android:padding="20dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textAppearance="?android:textAppearanceMedium"
@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/item_price"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/item_seller_email"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/item_seller_phone"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
@@ -50,7 +50,7 @@
 
     <TextView
         android:id="@+id/item_time"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceMedium"
@@ -58,10 +58,11 @@
 
     <ImageView
         android:id="@+id/item_picture_url"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="Picture URL"/>
+        android:layout_weight="0.5"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -69,17 +70,17 @@
 
         <Button
             android:id="@+id/delete_button"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete From Sale"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="30dp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="30dp"
-            />
+            android:elevation="10dp"
+            android:layout_marginBottom="20dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
