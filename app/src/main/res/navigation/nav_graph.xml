@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/firstFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.obligatoriskopgave.LoginFragment"
+        android:id="@+id/firstFragment"
+        android:name="com.example.obligatoriskopgave.login.LoginFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_login">
         <action
@@ -15,29 +15,13 @@
             app:destination="@id/listFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.obligatoriskopgave.ItemTemplateFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_menu">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_SecondFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.obligatoriskopgave.ListFragment"
+        android:name="com.example.obligatoriskopgave.home.ListFragment"
         android:label="fragment_list"
-
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_listFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/firstFragment" />
     </fragment>
+
 </navigation>

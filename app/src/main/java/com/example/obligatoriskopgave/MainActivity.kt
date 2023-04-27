@@ -10,18 +10,25 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.Window
+import android.widget.Toast
 import com.example.obligatoriskopgave.databinding.ActivityMainBinding
+import com.example.obligatoriskopgave.salesItems.AddItemDialogFragment
+import com.example.obligatoriskopgave.salesItems.Items
+import com.example.obligatoriskopgave.salesItems.ItemsRepository
+import com.example.obligatoriskopgave.salesItems.ItemsService
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    lateinit var addFAB: FloatingActionButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -30,9 +37,10 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        addFAB = binding.idFABAdd // initialize addFAB variable by finding the view in the layout
+        addFAB.setOnClickListener{
+            val addItemDialogFragment = AddItemDialogFragment()
+            addItemDialogFragment.show(supportFragmentManager, "addItemDialog")
         }
     }
 
@@ -41,16 +49,6 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_FirstFragment_to_listFragment-> true
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
