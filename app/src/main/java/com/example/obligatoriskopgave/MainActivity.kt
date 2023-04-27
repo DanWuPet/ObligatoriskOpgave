@@ -12,7 +12,6 @@ import android.view.MenuItem
 import android.view.Window
 import android.widget.Toast
 import com.example.obligatoriskopgave.databinding.ActivityMainBinding
-import com.example.obligatoriskopgave.home.ItemsAdapter
 import com.example.obligatoriskopgave.salesItems.AddItemDialogFragment
 import com.example.obligatoriskopgave.salesItems.Items
 import com.example.obligatoriskopgave.salesItems.ItemsRepository
@@ -50,12 +49,6 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

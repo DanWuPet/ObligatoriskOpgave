@@ -13,7 +13,6 @@ class ItemsRepository {
     private val url = "https://anbo-salesitems.azurewebsites.net/api/ "
 
     private val itemsService: ItemsService
-    private var sortOption = ""
     private var originalItems: List<Items>? = null
     val itemsLiveData: MutableLiveData<List<Items>> = MutableLiveData<List<Items>>()
     val errorMessageLiveData: MutableLiveData<String> = MutableLiveData()
@@ -50,51 +49,8 @@ class ItemsRepository {
         })
     }
 
-    fun addItem(item: Items) {
-        itemsService.addItem(item).enqueue(object : Callback<Items> {
-            override fun onResponse(call: Call<Items>, response: Response<Items>) {
-                if (response.isSuccessful) {
-                    Log.d("ITEMS_SERVICE", "Added: " + response.body())
-                    updateMessageLiveData.postValue("Added: " + response.body())
-                    getItems()
-                } else {
-                    val message = response.code().toString() + " " + response.message()
-                    errorMessageLiveData.postValue(message)
-                    Log.d("ITEMS_SERVICE", message)
-                }
-            }
-
-            override fun onFailure(call: Call<Items>, t: Throwable) {
-                errorMessageLiveData.postValue(t.message)
-                Log.d("ITEMS_SERVICE", t.message!!)
-            }
-        })
-    }
-
-    fun deleteItem(id: Int) {
-        itemsService.deleteItem(id).enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    Log.d("ITEMS_SERVICE", "Deleted item with id: $id")
-                    updateMessageLiveData.postValue("Deleted item with id: $id")
-                    getItems()
-                } else {
-                    val message = response.code().toString() + " " + response.message()
-                    errorMessageLiveData.postValue(message)
-                    Log.d("ITEMS_SERVICE", message)
-                }
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                errorMessageLiveData.postValue(t.message)
-                Log.d("ITEMS_SERVICE", t.message!!)
-            }
-        })
-    }
-
     fun sortByTitleAscending() {
         itemsLiveData.value = itemsLiveData.value?.sortedBy { it.description }
-        sortOption = "description"
     }
 
     fun sortByTitleDescending() {
@@ -103,7 +59,6 @@ class ItemsRepository {
 
     fun sortByPrice() {
         itemsLiveData.value = itemsLiveData.value?.sortedBy { it.price }
-        sortOption = "price"
     }
 
     fun sortByPriceDescending() {

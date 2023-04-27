@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.obligatoriskopgave.R
 import com.example.obligatoriskopgave.databinding.FragmentListBinding
 import com.example.obligatoriskopgave.salesItems.ItemsRepository
@@ -94,6 +95,14 @@ class ListFragment : Fragment() {
 
 
         setHasOptionsMenu(true)
+
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+            // Refresh the list of items here
+            itemsRepository.getItems()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
     }
 
 
@@ -112,12 +121,6 @@ class ListFragment : Fragment() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_main, menu)
     }
 
     override fun onCreateView(
